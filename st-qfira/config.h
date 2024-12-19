@@ -93,35 +93,37 @@ char *termname = "st-256color";
  */
 unsigned int tabspaces = 8;
 
+#import "../solarized_color_scheme.h"
+
 /* Terminal colors (16 first used in escape sequence) */
 static const char *colorname[] = {
 	/* 8 normal colors */
-	"black",
-	"red3",
-	"green3",
-	"yellow3",
-	"blue2",
-	"magenta3",
-	"cyan3",
-	"gray90",
+        sol_base2,
+	sol_base01,
+	sol_base3,
+	sol_base00,
+	sol_base0,
+	sol_base1,
+	sol_base03,
+	sol_base02,
 
 	/* 8 bright colors */
-	"gray50",
-	"red",
-	"green",
-	"yellow",
-	"#5c5cff",
-	"magenta",
-	"cyan",
-	"white",
+	sol_yellow,
+	sol_orange,
+	sol_red,
+	sol_magenta,
+	sol_violet,
+	sol_blue,
+	sol_cyan,
+	sol_green,
 
 	[255] = 0,
 
 	/* more colors can be added after 255 to use with DefaultXX */
-	"#cccccc",
-	"#555555",
-	"gray90", /* default foreground colour */
-	"black", /* default background colour */
+	sol_base02,
+	sol_base03,
+	sol_base00, /* default foreground colour */
+	sol_base3 /* default background colour */
 };
 
 
@@ -129,10 +131,10 @@ static const char *colorname[] = {
  * Default colors (colorname index)
  * foreground, background, cursor, reverse cursor
  */
-unsigned int defaultfg = 258;
-unsigned int defaultbg = 259;
-unsigned int defaultcs = 256;
-static unsigned int defaultrcs = 257;
+unsigned int defaultfg = 241; //base00
+unsigned int defaultbg = 230; //base3
+unsigned int defaultcs = 125; //magenta
+static unsigned int defaultrcs = 240; //base01
 
 /*
  * Default shape of cursor

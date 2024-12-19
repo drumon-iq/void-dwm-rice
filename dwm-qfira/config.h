@@ -4,7 +4,7 @@
 static const unsigned int borderpx  = 1;        /* border pixel of windows */
 static const unsigned int snap      = 32;       /* snap pixel */
 static const int showbar            = 1;        /* 0 means no bar */
-static const int topbar             = 1;        /* 0 means bottom bar */
+static const int topbar             = 0;        /* 0 means bottom bar */
 static const char *fonts[]          = { "VictorMonoNerdFont-Regular:size=16" };
 static const char dmenufont[]       = "VictorMonoNerdFont-Regular:size=16";
 
@@ -14,19 +14,28 @@ static const char col_gray3[]       = "#bbbbbb";
 static const char col_gray4[]       = "#eeeeee";
 static const char col_cyan[]        = "#005577";
 
-//Solarized Theme
-static const char solar_fg[]	    = "#657b83";
-static const char solar_bg[] 	    = "#fdf6e3";
-static const char solar_bd[] 	    = "#eee8d5";
-static const char solar_fg2[]	    = "#93a1a1";
-static const char solar_bg2[]	    = "#002b36";
-static const char solar_bd2[]	    = "#cb4b16";
+#import "../solarized_color_scheme.h"
+
+//Solarized Theme Light
+static const char sol_fg_L[]	    = sol_base00;
+static const char sol_bg_L[] 	    = sol_base3;
+static const char sol_hfg_L[]	    = sol_base01;
+static const char sol_hbg_L[]	    = sol_base2;
+static const char sol_s_L[]	    = sol_orange;
 
 static const char *colors[][3]      = {
 	/*               fg         bg         border   */
-	[SchemeNorm] = { solar_fg,  solar_bg,  solar_bd },
-	[SchemeSel]  = { solar_fg2, solar_bg2, solar_bd2 },
+	[SchemeNorm] = { sol_fg_L,  sol_bg_L,   sol_bg_L },
+	[SchemeSel]  = { sol_hfg_L, sol_hbg_L, sol_s_L },
 };
+
+//Solarized Theme Dark
+static const char sol_fg_D[]	    = sol_base0;
+static const char sol_bg_D[] 	    = sol_base03;
+static const char sol_hfg_D[]	    = sol_base1;
+static const char sol_hbg_D[]	    = sol_base02;
+static const char sol_s_D[]	    = sol_orange;
+
 
 /* tagging */
 static const char *tags[] = { "1", "2", "3", "4", "5", "6", "7", "8", "9" };
@@ -71,10 +80,10 @@ static const char *dmenucmd[] = {
     "dmenu_run", 
     "-m", dmenumon, 
     "-fn", dmenufont, 
-    "-nb", solar_bg, 
-    "-nf", solar_fg, 
-    "-sb", solar_bg2, 
-    "-sf", solar_fg2, 
+    "-nb", sol_bg_L, 
+    "-nf", sol_fg_L, 
+    "-sb", sol_hbg_L, 
+    "-sf", sol_hfg_L, 
     NULL 
 };
 
