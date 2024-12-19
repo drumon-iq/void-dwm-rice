@@ -80,9 +80,19 @@ static const char *dmenucmd[] = {
 
 static const char *termcmd[]  = { "st", NULL };
 
+static const char *raiseVolume[]  = { "amixer", "set", "Master", "5%+", NULL };
+static const char *lowerVolume[]  = { "amixer", "set", "Master", "5%-", NULL };
+
+static const char *raiseBrightness[] = { "xbacklight", "-inc", "5", NULL };
+static const char *lowerBrightness[] = { "xbacklight", "-dec", "5", NULL };
+
 static const Key keys[] = {
 	/* modifier                     key        function        argument */
 	{ MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } },
+	{ 0,	          XF86XK_AudioLowerVolume, spawn,	   {.v = lowerVolume} },
+	{ 0,		  XF86XK_AudioRaiseVolume, spawn,	   {.v = raiseVolume} },
+	{ 0,               XF86XK_MonBrightnessUp, spawn,	   {.v = raiseBrightness} },
+	{ 0,              XF86XK_MonBrightnessDown, spawn,	   {.v = lowerBrightness} },
 	{ MODKEY|ShiftMask,		XK_Return, spawn,          {.v = termcmd } },
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
