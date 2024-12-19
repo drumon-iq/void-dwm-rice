@@ -1,0 +1,8 @@
+#No need for the binary and objects as well
+*dwm
+*st
+*dmenu
+*.o
+
+#Lets not include the tarballs lol
+tarballs*
