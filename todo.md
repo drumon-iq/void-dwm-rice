@@ -53,6 +53,8 @@
 
 ## Future Ideas
 
+ * [] pt br support
+
 ---
 
 ## Regular Updates
