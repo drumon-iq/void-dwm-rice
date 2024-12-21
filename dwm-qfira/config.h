@@ -95,6 +95,8 @@ static const char *lowerVolume[]  = { "amixer", "set", "Master", "5%-", NULL };
 static const char *raiseBrightness[] = { "xbacklight", "-inc", "5", NULL };
 static const char *lowerBrightness[] = { "xbacklight", "-dec", "5", NULL };
 
+static const char *menupower[]  = { "menu-power.sh", NULL };
+
 static const Key keys[] = {
 	/* modifier                     key        function        argument */
 	{ MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } },
@@ -133,7 +135,7 @@ static const Key keys[] = {
 	TAGKEYS(                        XK_7,                      6)
 	TAGKEYS(                        XK_8,                      7)
 	TAGKEYS(                        XK_9,                      8)
-	{ MODKEY|ShiftMask,             XK_q,      quit,           {0} },
+	{ MODKEY|ShiftMask,             XK_q,      spawn,          {.v = menupower} },
 };
 
 /* button definitions */

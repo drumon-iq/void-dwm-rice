@@ -100,12 +100,12 @@ static const char *colorname[] = {
 	/* 8 normal colors */
         sol_base2,
 	sol_base01,
-	sol_base3,
 	sol_base00,
 	sol_base0,
 	sol_base1,
 	sol_base03,
 	sol_base02,
+	sol_base3,
 
 	/* 8 bright colors */
 	sol_yellow,
