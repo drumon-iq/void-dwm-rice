@@ -6,7 +6,7 @@ VERSION = 0.9.2
 # paths
 PREFIX = /.local
 MANPREFIX = $(PREFIX)/share/man
-DESTDIR = ${HOME}
+DESTDIR = $(HOME)
 
 X11INC = /usr/X11R6/include
 X11LIB = /usr/X11R6/lib
