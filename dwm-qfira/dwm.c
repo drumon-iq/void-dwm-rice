@@ -44,6 +44,7 @@
 
 #include "drw.h"
 #include "util.h"
+#include "logger.h"
 
 /* macros */
 #define BUTTONMASK              (ButtonPressMask|ButtonReleaseMask)
@@ -438,6 +439,7 @@ attachstack(Client *c)
 void
 buttonpress(XEvent *e)
 {
+	logprint("handler[buttonpress]\n");
 	unsigned int i, x, click;
 	Arg arg = {0};
 	Client *c;
@@ -1055,6 +1057,7 @@ isuniquegeom(XineramaScreenInfo *unique, size_t n, XineramaScreenInfo *info)
 void
 keypress(XEvent *e)
 {
+	logprint("handler[keypress]\n");
 	unsigned int i;
 	KeySym keysym;
 	XKeyEvent *ev;
@@ -1450,12 +1453,16 @@ restack(Monitor *m)
 void
 run(void)
 {
+	logprint("run loop\n");
 	XEvent ev;
 	/* main event loop */
 	XSync(dpy, False);
 	while (running && !XNextEvent(dpy, &ev))
+	{
 		if (handler[ev.type])
 			handler[ev.type](&ev); /* call handler */
+		logprint("> ev: %d\n",ev.type);
+	}
 }
 
 void
@@ -2342,16 +2349,14 @@ main(int argc, char *argv[])
 		die("dwm-"VERSION);
 	else if (argc != 1)
 		die("usage: dwm [-v]");
-	//if (argc > 1 && argc == 5){
-	//    FILE * defile = fopen(argv[2], "a");
-	//    fputs(argv[4], defile);
-	//    fclose(defile);
-	//} else if (argc != 1)
-	//    die("what the fuck is going on");
 	if (!setlocale(LC_CTYPE, "") || !XSupportsLocale())
 		fputs("warning: no locale support\n", stderr);
 	if (!(dpy = XOpenDisplay(NULL)))
 		die("dwm: cannot open display");
+
+	setlog("/home/qfira/dwm.log");
+	clearlog();
+
 	checkotherwm();
 	setup();
 #ifdef __OpenBSD__

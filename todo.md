@@ -4,13 +4,13 @@
 
 ### _Uncrippling the System_  
 
- * [x] Add volume keybinds
- * [x] Add brightness keybinds
- * [x] Menu to suspend/logoff/poweroff/hibernate
- * [x] Change Alt+Shift+Q to spawn poweroff menu instead
+ * [ ] Add volume keybinds
+ * [ ] Add brightness keybinds
+ * [ ] Menu to suspend/logoff/poweroff/hibernate
+ * [ ] Change Alt+Shift+Q to spawn poweroff menu instead
 
  * **ST**
-   * [ ] Add ScrollBack ASAP -> 3
+   * [x] Add ScrollBack ASAP -> 3
 
  * **DWM**  
    * [ ] Add second info bar(at the top, capability to become hidden through keybind) -> 3
@@ -35,7 +35,7 @@
  * [ ] Create menu for manipulating bluetooth, wifi and volume -> 4
 
  * **DWM**  
-   * [ ] [Add possibility to use diferent layout for diferent tags -> 5](https://dwm.suckless.org/patches/functionalgaps/dwm-functionalgaps+pertag-6.2.diff)
+   * [x] [Add possibility to use diferent layout for diferent tags -> 5](https://dwm.suckless.org/patches/functionalgaps/dwm-functionalgaps+pertag-6.2.diff)
    * [ ] Make info bar clickable (collapsable information and menus) -> 3
 
 
@@ -81,7 +81,7 @@
 
  * **DWM**
    * [x] Fix color scheme for visibility
-   * [ ] [Add gaps between clients -> 5](https://dwm.suckless.org/patches/functionalgaps/dwm-functionalgaps+pertag-6.2.diff)
+   * [x] [Add gaps between clients -> 5](https://dwm.suckless.org/patches/functionalgaps/dwm-functionalgaps+pertag-6.2.diff)
    * [ ] Add capability for changing the icons of the tag bar -> 3
 
  * **DMENU**
@@ -104,6 +104,23 @@
 
 ## Regular Updates
 
+---
+
+## DWM  
+
+ * Add logger capability
+ * (code breakdown)
+ * Patches
+   * [ ] Pertag
+   * [ ] Functional Gaps
+
+## ST
+
+ * Add logging
+ * (code breakdown)
+ * Patches
+   * [ ] Scrollback
+   * [ ] Anysize
 ---
 
 ```text
