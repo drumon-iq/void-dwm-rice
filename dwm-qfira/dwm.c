@@ -235,6 +235,7 @@ static void updatestatus(void);
 static void updatetitle(Client *c);
 static void updatewindowtype(Client *c);
 static void updatewmhints(Client *c);
+static void updatescheme(int t);
 static void view(const Arg *arg);
 static Client *wintoclient(Window w);
 static Monitor *wintomon(Window w);
@@ -242,6 +243,8 @@ static int xerror(Display *dpy, XErrorEvent *ee);
 static int xerrordummy(Display *dpy, XErrorEvent *ee);
 static int xerrorstart(Display *dpy, XErrorEvent *ee);
 static void zoom(const Arg *arg);
+static void loadthemes();
+static void changetheme(const Arg *arg);
 
 /* variables */
 static const char broken[] = "broken";
@@ -272,6 +275,7 @@ static Atom wmatom[WMLast], netatom[NetLast];
 static int running = 1;
 static Cur *cursor[CurLast];
 static Clr **scheme;
+static Clr ***list_schemes;
 static Display *dpy;
 static Drw *drw;
 static Monitor *mons, *selmon;
@@ -497,6 +501,7 @@ cleanup(void)
 	Layout foo = { "", NULL };
 	Monitor *m;
 	size_t i;
+	size_t j;
 
 	view(&a);
 	selmon->lt[selmon->sellt] = &foo;
@@ -508,9 +513,15 @@ cleanup(void)
 		cleanupmon(mons);
 	for (i = 0; i < CurLast; i++)
 		drw_cur_free(drw, cursor[i]);
-	for (i = 0; i < LENGTH(colors); i++)
-		free(scheme[i]);
-	free(scheme);
+
+	for (i = 0; i < LENGTH(themes); i++) {
+		for (j = 0; j < LENGTH(themes[0]); j++)
+			free(list_schemes[i][j]);
+
+		free(list_schemes[i]);
+	}
+
+	free(list_schemes);
 	XDestroyWindow(dpy, wmcheckwin);
 	drw_free(drw);
 	XSync(dpy, False);
@@ -1663,7 +1674,6 @@ setmfact(const Arg *arg)
 void
 setup(void)
 {
-	int i;
 	XSetWindowAttributes wa;
 	Atom utf8string;
 	struct sigaction sa;
@@ -1708,9 +1718,8 @@ setup(void)
 	cursor[CurResize] = drw_cur_create(drw, XC_sizing);
 	cursor[CurMove] = drw_cur_create(drw, XC_fleur);
 	/* init appearance */
-	scheme = ecalloc(LENGTH(colors), sizeof(Clr *));
-	for (i = 0; i < LENGTH(colors); i++)
-		scheme[i] = drw_scm_create(drw, colors[i], 3);
+	loadthemes();
+	updatescheme(defaulttheme);
 	/* init bars */
 	updatebars();
 	updatestatus();
@@ -2340,6 +2349,39 @@ zoom(const Arg *arg)
 	if (c == nexttiled(selmon->clients) && !(c = nexttiled(c->next)))
 		return;
 	pop(c);
+}
+void 
+updatescheme(int t)
+{
+
+	if (t >= 0 && t < LENGTH(themes)) {
+	    scheme = list_schemes[t];
+	    updatebars();
+	    updatestatus();
+	}
+}
+
+void 
+loadthemes()
+{
+    /* Let me break it down for you (me in the future), allocate the pointer to pointer to pointer list then allocate each pointer to pointer, then the drw_scm_create allocates the pointers */
+	int i, j;
+	list_schemes = ecalloc(LENGTH(themes), sizeof(Clr **));
+
+	for (i = 0; i<LENGTH(themes); i++) {
+	        list_schemes[i] = ecalloc(LENGTH(themes[i]), sizeof(Clr *));
+		for (j = 0; j < LENGTH(themes[i]); j++)
+			list_schemes[i][j] = drw_scm_create(drw, themes[i][j], 3);
+	}
+}
+
+void 
+changetheme(const Arg *arg)
+{
+	int seltheme = arg->i;
+
+	if (seltheme >= 0 && seltheme < LENGTH(themes))
+		updatescheme(seltheme);
 }
 
 int
