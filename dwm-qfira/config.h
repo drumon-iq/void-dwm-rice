@@ -6,28 +6,28 @@
  *
  * The original config comes from ethan
 
-sol_base03  "#002b36" //Normal Dark Background
-sol_base02  "#073642" //Highlight Dark Background
-sol_base0   "#839496" //Normal Dark Foreground (primary)
-
-sol_base01  "#586e75" //Light Foreground Highlight OR Dark Foreground (secundary)
-sol_base1   "#93a1a1" //Dark Foreground Highlight OR Light Foreground (secundary)
-
-sol_base3   "#fdf6e3" //Normal Light Background
-sol_base2   "#eee8d5" //Highlight Light Background
-sol_base00  "#657b83" //Normal Light Foreground (primary)
-
-sol_yellow  "#b58900"
-sol_orange  "#cb4b16"
-sol_red	    "#dc322f"
-sol_magenta "#d33682"
-sol_violet  "#6c71c4"
-sol_blue    "#268bd2"
-sol_cyan    "#2aa198"
-sol_green   "#859900"
+"#657b83"	sol_base00   //Light Foreground Primary
+"#93a1a1"	sol_base1    //Light Foreground Secundary
+"#586e75"	sol_base01   //Light Foreground Highlight
+"#fdf6e3"	sol_base3    //Light Background
+"#eee8d5"	sol_base2    //Light Background Highlight 
+         	
+"#839496"	sol_base0    //Dark Foreground Primary
+"#586e75"	sol_base01   //Dark Foreground Secundary
+"#93a1a1"	sol_base1    //Dark Foreground Highlight
+"#002b36"	sol_base03   //Dark Background
+"#073642"	sol_base02   //Dark Background Highlight 
+         	
+"#b58900"	sol_yellow  
+"#cb4b16"	sol_orange  
+"#dc322f"	sol_red	    
+"#d33682"	sol_magenta 
+"#6c71c4"	sol_violet  
+"#268bd2"	sol_blue    
+"#2aa198"	sol_cyan    
+"#859900"	sol_green   
 
 */
-
 /* See LICENSE file for copyright and license details. */
 /* appearance */
 static const unsigned int borderpx  = 4;        /* border pixel of windows */
@@ -44,13 +44,13 @@ static const char *themes[][2][3] = {
 	/*			 fg,	    bg,	       border*/
 	/* solarized light */
 	{
-		[SchemeNorm] = { "#657b83", "#fdf6e3", "#002b36" },
-		[SchemeSel]  = { "#586e75", "#eee8d5", "#cb4b16" },
+		[SchemeNorm] = { "#657b83", "#fdf6e3", "#fdf6e3" },
+		[SchemeSel]  = { "#eee8d5", "#586e75", "#cb4b16" },
 	},
 	/* solarized dark */
 	{
-		[SchemeNorm] = { "#839496", "#002b36", "#586e75" },
-		[SchemeSel]  = { "#93a1a1", "#073642", "#268bd2" },
+		[SchemeNorm] = { "#839496", "#002b36", "#002b36" },
+		[SchemeSel]  = { "#073642", "#93a1a1", "#268bd2" },
 	}
 };
 

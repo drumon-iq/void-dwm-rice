@@ -5,8 +5,8 @@
  *
  * font: see http://freedesktop.org/software/fontconfig/fontconfig-user.html
  */
-static char *font = "Liberation Mono:pixelsize=20:antialias=true:autohint=true";
-static int borderpx = 2;
+static char *font = "JetBrainsMonoNerdFontMono-Regular:pixelsize=20:antialias=true:autohint=true";
+static int borderpx = 0;
 
 /*
  * What program is execed by st depends of these precedence rules:
@@ -96,32 +96,32 @@ unsigned int tabspaces = 8;
 /* Terminal colors (16 first used in escape sequence) */
 static const char *colorname[] = {
 	/* 8 normal colors */
-	"black",
-	"red3",
-	"green3",
-	"yellow3",
-	"blue2",
-	"magenta3",
-	"cyan3",
-	"gray90",
+	"#eee8d5",   /* sol_base2   */
+	"#586e75",   /* sol_base01  */
+	"#657b83",   /* sol_base00  */
+	"#839496",   /* sol_base0   */
+	"#93a1a1",   /* sol_base1   */
+	"#002b36",   /* sol_base03  */
+	"#073642",   /* sol_base02  */
+	"#fdf6e3",   /* sol_base3   */
 
 	/* 8 bright colors */
-	"gray50",
-	"red",
-	"green",
-	"yellow",
-	"#5c5cff",
-	"magenta",
-	"cyan",
-	"white",
+	"#b58900",   /* sol_yellow  */
+	"#cb4b16",   /* sol_orange  */
+	"#dc322f",   /* sol_red     */
+	"#d33682",   /* sol_magenta */
+	"#6c71c4",   /* sol_violet  */
+	"#268bd2",   /* sol_blue    */
+	"#2aa198",   /* sol_cyan    */
+	"#859900",   /* sol_green   */
 
 	[255] = 0,
 
 	/* more colors can be added after 255 to use with DefaultXX */
-	"#cccccc",
-	"#555555",
-	"gray90", /* default foreground colour */
-	"black", /* default background colour */
+	"#073642",   /* sol_base02  */
+	"#002b36",   /* sol_base03  */
+	"#657b83",   /* sol_base00  */ /* default foreground colour */
+	"#fdf6e3",   /* sol_base3   */ /* default background colour */
 };
 
 
@@ -129,10 +129,10 @@ static const char *colorname[] = {
  * Default colors (colorname index)
  * foreground, background, cursor, reverse cursor
  */
-unsigned int defaultfg = 258;
-unsigned int defaultbg = 259;
-unsigned int defaultcs = 256;
-static unsigned int defaultrcs = 257;
+unsigned int defaultfg = 241; //base00
+unsigned int defaultbg = 230; //base3
+unsigned int defaultcs = 125; //magenta
+static unsigned int defaultrcs = 240; //base01
 
 /*
  * Default shape of cursor

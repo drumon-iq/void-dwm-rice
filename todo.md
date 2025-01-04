@@ -2,6 +2,8 @@
 
 ## DWM
 
+ - [ ] Change quit function to execute the dmenu exit script (dont actually use bash script)
+
  ### Bar
 
   * Idea:  
@@ -47,3 +49,5 @@
 ---  
 
 ## ST
+
+ - [ ] Different color schemes (change through argument)
