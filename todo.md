@@ -33,10 +33,14 @@
   * Idea:
     Light/Dark theme, switch through keybind
 
+  - [x] Solarized light/dark
   - [x] Function to switch
-  - [x] Solarized?
-  - [ ] Wallpapers to match
-  - [ ] Change wallpapers on theme change
+    * Idea: function to switch changes commands, keybinds, wallpaper, runs commands, runs functions, changes color scheme, all configurable inside config.h, so it must be able to take a argument and make all those functions
+    - [ ] Able to switch theme
+    - [ ] Able to switch spawn commands (for color maybe)
+    - [ ] Able to run any number of functions (with arguments)
+    - [ ] Able to run any number of commands (literally just spawn tho)
+
 
  ### Shortcuts & Widgets
 

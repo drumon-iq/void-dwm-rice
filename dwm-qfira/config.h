@@ -45,12 +45,12 @@ static const char *themes[][2][3] = {
 	/* solarized light */
 	{
 		[SchemeNorm] = { "#657b83", "#fdf6e3", "#002b36" },
-		[SchemeSel]  = { "#586e75", "#eee8d5", "#268bd2" },
+		[SchemeSel]  = { "#586e75", "#eee8d5", "#cb4b16" },
 	},
 	/* solarized dark */
 	{
 		[SchemeNorm] = { "#839496", "#002b36", "#586e75" },
-		[SchemeSel]  = { "#93a1a1", "#073642", "#cb4b16" }
+		[SchemeSel]  = { "#93a1a1", "#073642", "#268bd2" },
 	}
 };
 

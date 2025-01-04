@@ -235,7 +235,7 @@ static void updatestatus(void);
 static void updatetitle(Client *c);
 static void updatewindowtype(Client *c);
 static void updatewmhints(Client *c);
-static void updatescheme(int t);
+static void updatescheme();
 static void view(const Arg *arg);
 static Client *wintoclient(Window w);
 static Monitor *wintomon(Window w);
@@ -244,7 +244,7 @@ static int xerrordummy(Display *dpy, XErrorEvent *ee);
 static int xerrorstart(Display *dpy, XErrorEvent *ee);
 static void zoom(const Arg *arg);
 static void loadthemes();
-static void changetheme(const Arg *arg);
+static void selectscheme(int seltheme);
 static void toggletheme(const Arg *arg);
 
 /* variables */
@@ -1716,7 +1716,7 @@ setup(void)
 	cursor[CurMove] = drw_cur_create(drw, XC_fleur);
 	/* init appearance */
 	loadthemes();
-	updatescheme(defaulttheme);
+	selectscheme(defaulttheme);
 	/* init bars */
 	updatebars();
 	updatestatus();
@@ -2348,23 +2348,24 @@ zoom(const Arg *arg)
 	pop(c);
 }
 void 
-updatescheme(int t)
+updatescheme()
 {
 	Monitor *m;
 	Client *c;
 
-	if (t >= 0 && t < LENGTH(themes)) {
-		scheme = list_schemes[t];
-		updatestatus();
+	if(!scheme)
+		die("No scheme to update!");
 
-		for (m = mons; m; m = m->next) {
-			for (c = m->clients; c; c = c->next)
-				XSetWindowBorder(dpy, c->win, scheme[SchemeNorm][ColBorder].pixel);
-		}
+	updatestatus();
 
-		if (selmon->sel)
-			XSetWindowBorder(dpy, selmon->sel->win, scheme[SchemeSel][ColBorder].pixel);
+	/* Must update all of them, since it's an attribute(???) and set the focus one*/
+	for (m = mons; m; m = m->next) {
+		for (c = m->clients; c; c = c->next)
+			XSetWindowBorder(dpy, c->win, scheme[SchemeNorm][ColBorder].pixel);
 	}
+
+	if (selmon->sel)
+		XSetWindowBorder(dpy, selmon->sel->win, scheme[SchemeSel][ColBorder].pixel);
 }
 
 void 
@@ -2382,12 +2383,12 @@ loadthemes()
 }
 
 void 
-changetheme(const Arg *arg)
+selectscheme(int seltheme)
 {
-	int seltheme = arg->i;
-
-	if (seltheme >= 0 && seltheme < LENGTH(themes))
-		updatescheme(seltheme);
+	if (seltheme >= 0 && seltheme < LENGTH(themes)) {
+		scheme = list_schemes[seltheme];
+		updatescheme();
+	}
 }
 
 void 
@@ -2396,9 +2397,9 @@ toggletheme(const Arg *arg)
 	int nt = arg->i;
 
 	if (scheme == list_schemes[defaulttheme])
-		updatescheme(nt);
+		selectscheme(nt);
 	else
-		updatescheme(defaulttheme);
+		selectscheme(defaulttheme);
 }
 
 int
