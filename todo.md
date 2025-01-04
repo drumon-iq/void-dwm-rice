@@ -33,8 +33,8 @@
   * Idea:
     Light/Dark theme, switch through keybind
 
-  - [ ] Function to switch
-  - [ ] Solarized?
+  - [x] Function to switch
+  - [x] Solarized?
   - [ ] Wallpapers to match
   - [ ] Change wallpapers on theme change
 

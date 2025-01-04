@@ -245,6 +245,7 @@ static int xerrorstart(Display *dpy, XErrorEvent *ee);
 static void zoom(const Arg *arg);
 static void loadthemes();
 static void changetheme(const Arg *arg);
+static void toggletheme(const Arg *arg);
 
 /* variables */
 static const char broken[] = "broken";
@@ -443,7 +444,6 @@ attachstack(Client *c)
 void
 buttonpress(XEvent *e)
 {
-	logprint("handler[buttonpress]\n");
 	unsigned int i, x, click;
 	Arg arg = {0};
 	Client *c;
@@ -1068,7 +1068,6 @@ isuniquegeom(XineramaScreenInfo *unique, size_t n, XineramaScreenInfo *info)
 void
 keypress(XEvent *e)
 {
-	logprint("handler[keypress]\n");
 	unsigned int i;
 	KeySym keysym;
 	XKeyEvent *ev;
@@ -1464,7 +1463,6 @@ restack(Monitor *m)
 void
 run(void)
 {
-	logprint("run loop\n");
 	XEvent ev;
 	/* main event loop */
 	XSync(dpy, False);
@@ -1472,7 +1470,6 @@ run(void)
 	{
 		if (handler[ev.type])
 			handler[ev.type](&ev); /* call handler */
-		logprint("> ev: %d\n",ev.type);
 	}
 }
 
@@ -2353,11 +2350,20 @@ zoom(const Arg *arg)
 void 
 updatescheme(int t)
 {
+	Monitor *m;
+	Client *c;
 
 	if (t >= 0 && t < LENGTH(themes)) {
-	    scheme = list_schemes[t];
-	    updatebars();
-	    updatestatus();
+		scheme = list_schemes[t];
+		updatestatus();
+
+		for (m = mons; m; m = m->next) {
+			for (c = m->clients; c; c = c->next)
+				XSetWindowBorder(dpy, c->win, scheme[SchemeNorm][ColBorder].pixel);
+		}
+
+		if (selmon->sel)
+			XSetWindowBorder(dpy, selmon->sel->win, scheme[SchemeSel][ColBorder].pixel);
 	}
 }
 
@@ -2382,6 +2388,17 @@ changetheme(const Arg *arg)
 
 	if (seltheme >= 0 && seltheme < LENGTH(themes))
 		updatescheme(seltheme);
+}
+
+void 
+toggletheme(const Arg *arg)
+{
+	int nt = arg->i;
+
+	if (scheme == list_schemes[defaulttheme])
+		updatescheme(nt);
+	else
+		updatescheme(defaulttheme);
 }
 
 int
