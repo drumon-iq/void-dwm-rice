@@ -2,7 +2,7 @@
 
 ## DWM
 
- - [ ] Change quit function to execute the dmenu exit script (dont actually use bash script)
+ - [x] Change quit function to execute the dmenu exit script (dont actually use bash script)
 
  ### Bar
 
@@ -38,7 +38,7 @@
   - [x] Solarized light/dark
   - [x] Function to switch
     * Idea: function to switch changes commands, keybinds, wallpaper, runs commands, runs functions, changes color scheme, all configurable inside config.h, so it must be able to take a argument and make all those functions
-    - [ ] Able to switch theme
+    - [x] Able to switch theme
     - [ ] Able to switch spawn commands (for color maybe)
     - [ ] Able to run any number of functions (with arguments)
     - [ ] Able to run any number of commands (literally just spawn tho)

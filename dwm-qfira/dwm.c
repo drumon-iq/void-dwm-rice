@@ -1330,8 +1330,23 @@ propertynotify(XEvent *e)
 void
 quit(const Arg *arg)
 {
-	char buffer[256];
-	FILE *pipe = popen("echo \"1.EXIT\n2.SUSPEND\n3.SHUTDOWN\n4.REBOOT\" | dmenu -p \"Select Action\"", "r");
+	char buffer[512];
+	int seltheme;
+
+	/* C is a beautiful language LOL */
+	for (seltheme = 0; seltheme < LENGTH(themes); seltheme++)
+		if (scheme == list_schemes[seltheme])
+			break;
+
+	sprintf(buffer, 
+		"echo \"1.EXIT\n2.SUSPEND\n3.SHUTDOWN\n4.REBOOT\" | dmenu -fn \"%s\" -nb \"%s\" -nf \"%s\" -sb \"%s\" -sf \"%s\" -p \"Select Action\"",
+		dmenufont,
+		themes[seltheme][0][1],	
+		themes[seltheme][0][0],	
+		themes[seltheme][1][1],	
+		themes[seltheme][1][0]);
+
+	FILE *pipe = popen(buffer, "r");
 
 	if (!pipe)
 	    die("Failed to initialize pipe in quit\n");
