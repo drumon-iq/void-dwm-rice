@@ -2086,6 +2086,10 @@ main(int argc, char *argv[])
 	case 'v':
 		die("%s " VERSION "\n", argv0);
 		break;
+	case 'r':
+		defaultfg = darkfg;
+		defaultbg = darkbg;
+		break;                                
 	default:
 		usage();
 	} ARGEND;

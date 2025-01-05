@@ -246,6 +246,7 @@ static void zoom(const Arg *arg);
 static void loadthemes();
 static void selectscheme(int seltheme);
 static void toggletheme(const Arg *arg);
+static void myfunk();
 
 /* variables */
 static const char broken[] = "broken";
@@ -1818,6 +1819,7 @@ spawn(const Arg *arg)
 
 	if (arg->v == dmenucmd)
 		dmenumon[0] = '0' + selmon->num;
+
 	if (fork() == 0) {
 		if (dpy)
 			close(ConnectionNumber(dpy));
@@ -2433,11 +2435,31 @@ toggletheme(const Arg *arg)
 {
 	int nt = arg->i;
 
-	if (scheme == list_schemes[defaulttheme])
+	if (scheme == list_schemes[defaulttheme]) {
+		system("feh --no-fehbg --bg-fill $HOME/Images/Wallpapers/Solarized/SolarizedDark/wallpaper1.jpg");
+		termcmd[1] = "-r";
 		selectscheme(nt);
-	else
+	} else {
+		system("feh --no-fehbg --bg-fill $HOME/Images/Wallpapers/Solarized/SolarizedLight/wallpaper1.png");
+		termcmd[1] = NULL;
 		selectscheme(defaulttheme);
+	}
 }
+
+//void
+//myfunk()
+//{
+//	screen = DefaultScreen(dpy);
+//	sw = DisplayWidth(dpy, screen);
+//	sh = DisplayHeight(dpy, screen);
+//	root = RootWindow(dpy, screen);
+//
+//	Drw *mydrw = drw_create(dpy, screen, root, sw, sh);
+//
+//	drw_setscheme(mydrw, scheme[SchemeSel]);
+//
+//	drw_rect(mydrw, 100, 100, 1000, 1000, 1, 0);
+//}
 
 int
 main(int argc, char *argv[])
