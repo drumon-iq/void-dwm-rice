@@ -1330,7 +1330,29 @@ propertynotify(XEvent *e)
 void
 quit(const Arg *arg)
 {
-	running = 0;
+	char buffer[256];
+	FILE *pipe = popen("echo \"1.EXIT\n2.SUSPEND\n3.SHUTDOWN\n4.REBOOT\" | dmenu -p \"Select Action\"", "r");
+
+	if (!pipe)
+	    die("Failed to initialize pipe in quit\n");
+
+	fgets(buffer, sizeof(buffer), pipe);
+	pclose(pipe);
+
+	switch (buffer[0]) {
+		case '1':
+			running = 0;
+			break;
+		case '2':
+			system("loginctl suspend\n");
+			break;
+		case '3':
+			system("loginctl powerof\n");
+			break;
+		case '4':
+			system("loginctl reboot\n");
+			break;
+	}
 }
 
 Monitor *
