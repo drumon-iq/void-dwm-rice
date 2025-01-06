@@ -2,10 +2,13 @@
 
 ## Index
 
-[ - [x] DWM quit menu](DWM quit)
-[ - [0%] DWM custom bar](Bar)
-[ - [Almost Done] Toggleable themes](Theme)
-[ - [x] ST switch light/dark mode](ST darkmode)
+[ - [x] DWM quit menu](#DWM quit)
+
+[ - [0%] DWM custom bar](#Bar)
+
+[ - [Almost Done] Toggleable themes](#Theme)
+
+[ - [x] ST switch light/dark mode](#ST darkmode)
 
 ---
 
