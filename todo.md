@@ -2,6 +2,8 @@
 
 ## Index
 
+[ - [ ] Rice every component](#Rice-Apps-List)
+
 [ - [x] DWM quit menu](#DWM-quit)
 
 [ - [0%] DWM custom bar](#Bar)
@@ -62,3 +64,29 @@
 ### ST-darkmode  
 
  Different color schemes (change through argument)
+
+## Rice-Apps-List
+
+ - [ ] DWM
+   - [9] Colorschemes
+   - [ ] Bar
+   - [ ] Layouts
+   - [ ] Shortcuts and Keybinds
+   - [ ] Widgets
+ - [ ] ST
+   - [x] Colorschemes
+   - [7] Scrollback
+ - [ ] DMENU
+   - [ ] Layouts
+   - [ ] Positions
+   - [ ] Scripts
+ - [ ] NEOVIM
+   - [ ] Colorscheme
+   - [ ] LSP
+ - [ ] TMUX
+   - [ ] Make it pretty
+   - [ ] Sane keybinds (they are currently insane)
+ - [ ] RANGER
+   - [ ] Images and files preview
+   - [ ] Sane keybinds
+   - [ ] Proper rifle config

@@ -2439,10 +2439,20 @@ toggletheme(const Arg *arg)
 		system("feh --no-fehbg --bg-fill $HOME/Images/Wallpapers/Solarized/SolarizedDark/wallpaper1.jpg");
 		termcmd[1] = "-r";
 		selectscheme(nt);
+
+		dmenucmd[6] = themes[nt][0][1];
+		dmenucmd[8] = themes[nt][0][0];
+		dmenucmd[10] = themes[nt][1][1];
+		dmenucmd[12] = themes[nt][1][0];
 	} else {
 		system("feh --no-fehbg --bg-fill $HOME/Images/Wallpapers/Solarized/SolarizedLight/wallpaper1.png");
 		termcmd[1] = NULL;
 		selectscheme(defaulttheme);
+
+		dmenucmd[6] = themes[defaulttheme][0][1];
+		dmenucmd[8] = themes[defaulttheme][0][0];
+		dmenucmd[10] = themes[defaulttheme][1][1];
+		dmenucmd[12] = themes[defaulttheme][1][0];
 	}
 }
 

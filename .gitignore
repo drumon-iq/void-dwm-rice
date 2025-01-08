@@ -3,6 +3,7 @@
 *st
 *dmenu
 *.o
+*backup*
 
 #Lets not include the tarballs lol
 tarballs*
