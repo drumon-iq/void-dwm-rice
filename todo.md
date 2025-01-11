@@ -8,7 +8,7 @@
 
 [ - [0%] DWM custom bar](#Bar)
 
-[ - [Almost Done] Toggleable themes](#Theme)
+[ - [x] Toggleable themes](#Theme)
 
 [ - [x] ST switch light/dark mode](#ST-darkmode)
 
@@ -56,7 +56,7 @@
    - [-] Able to run any number of commands (literally just spawn tho)
    * Won't add a way to configure toggletheme through arguments, just changing the function code itself, the abstraction seems unnecessary at the moment  
  - [x] ST changing theme
- - [ ] DMENU changing theme
+ - [x] DMENU changing theme
  - [x] Quit menu changing theme
  - [x] Bar changing theme
  - [x] Clients border's changing theme
