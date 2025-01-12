@@ -1,7 +1,9 @@
 #No need for the binary and objects as well
-*dwm
-*st
-*dmenu
+dwm/dwm
+st/st
+dmenu/dmenu
+dmenu/dmenu_run
+dmenu/dmenu_path
 *.o
 *backup*
 
