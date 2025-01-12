@@ -6,7 +6,7 @@
 
 [ - [x] DWM quit menu](#DWM-quit)
 
-[ - [60%] DWM custom bar](#Bar)
+[ - [98%] DWM custom bar](#Bar)
 
 [ - [x] Toggleable themes](#Theme)
 
@@ -27,8 +27,10 @@
  - [x] Hide Vacant tags
  - [x] Remove status and title from main bar
  - [x] Centralize tag bar
- - [ ] Extra bar (status)
- - [ ] Titles? (no idea)
+ - [x] Extra bar (status)
+ - [?] Titles? (no idea)
+
+ > Title currently sits at left of the tag bar, may stay there or not
  
 ### Theme  
 
