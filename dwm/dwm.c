@@ -462,18 +462,18 @@ buttonpress(XEvent *e)
 	}
 	if (ev->window == selmon->barwin) {
 		i = x = 0;
-		do
-			x += TEXTW(tags[i]);
-		while (ev->x >= x && ++i < LENGTH(tags));
-		if (i < LENGTH(tags)) {
-			click = ClkTagBar;
-			arg.ui = 1 << i;
-		} else if (ev->x < x + TEXTW(selmon->ltsymbol))
-			click = ClkLtSymbol;
-		else if (ev->x > selmon->ww - (int)TEXTW(stext))
-			click = ClkStatusText;
-		else
-			click = ClkWinTitle;
+		//do
+		//	x += TEXTW(tags[i]);
+		//while (ev->x >= x && ++i < LENGTH(tags));
+		//if (i < LENGTH(tags)) {
+		//	click = ClkTagBar;
+		//	arg.ui = 1 << i;
+		//} else if (ev->x < x + TEXTW(selmon->ltsymbol))
+		//	click = ClkLtSymbol;
+		//else if (ev->x > selmon->ww - (int)TEXTW(stext))
+		//	click = ClkStatusText;
+		//else
+		//	click = ClkWinTitle;
 	} else if ((c = wintoclient(ev->window))) {
 		focus(c);
 		restack(selmon);
@@ -799,6 +799,9 @@ drawbar(Monitor *m)
 	}
 
 	x = (m->mw / 2) - (tagwidth / 2);
+
+	drw_setscheme(drw, scheme[SchemeNorm]);
+	drw_rect(drw, x-2, 0, m->mw - x, bh, 1, 1);
 
 	logprint("tags:\n");
 	for (i = 0; i < LENGTH(tags); i++) {

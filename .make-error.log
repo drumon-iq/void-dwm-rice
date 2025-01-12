@@ -1,0 +1,6 @@
+dwm.c:251:13: warning: 'myfunk' declared 'static' but never defined [-Wunused-function]
+  251 | static void myfunk();
+      |             ^~~~~~
+dwm.c:1665:1: warning: 'setgaps' defined but not used [-Wunused-function]
+ 1665 | setgaps(const Arg *arg)
+      | ^~~~~~~

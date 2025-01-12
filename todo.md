@@ -56,9 +56,9 @@
 
 ## Rice-Apps-List
 
- - [ ] DWM
-   - [9] Colorschemes
-   - [ ] Bar
+ - [40%] DWM
+   - [x] Colorschemes
+   - [x] Bar
    - [ ] Layouts
    - [ ] Shortcuts and Keybinds
    - [ ] Widgets

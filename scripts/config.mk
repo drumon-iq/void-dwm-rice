@@ -1,0 +1,2 @@
+PREFIX = /.local
+DESTDIR = ${HOME}
