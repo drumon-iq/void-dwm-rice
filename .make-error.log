@@ -1,6 +1,11 @@
+dwm.c: In function 'drawbar':
+dwm.c:756:19: warning: unused variable 'tw' [-Wunused-variable]
+  756 |         int x, w, tw = 0;
+      |                   ^~
+dwm.c: At top level:
 dwm.c:249:13: warning: 'myfunk' declared 'static' but never defined [-Wunused-function]
   249 | static void myfunk();
       |             ^~~~~~
-dwm.c:1642:1: warning: 'setgaps' defined but not used [-Wunused-function]
- 1642 | setgaps(const Arg *arg)
+dwm.c:1657:1: warning: 'setgaps' defined but not used [-Wunused-function]
+ 1657 | setgaps(const Arg *arg)
       | ^~~~~~~

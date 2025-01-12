@@ -6,7 +6,7 @@
 
 [ - [x] DWM quit menu](#DWM-quit)
 
-[ - [0%] DWM custom bar](#Bar)
+[ - [60%] DWM custom bar](#Bar)
 
 [ - [x] Toggleable themes](#Theme)
 
@@ -25,8 +25,8 @@
  Windows title, at windows top
 
  - [x] Hide Vacant tags
- - [ ] Remove status and title from main bar
- - [ ] Centralize tag bar
+ - [x] Remove status and title from main bar
+ - [x] Centralize tag bar
  - [ ] Extra bar (status)
  - [ ] Titles? (no idea)
  

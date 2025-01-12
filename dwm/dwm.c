@@ -756,29 +756,45 @@ drawbar(Monitor *m)
 	int x, w, tw = 0;
 	int boxs = drw->fonts->h / 9;
 	int boxw = drw->fonts->h / 6 + 2;
-	unsigned int i, occ = 0, urg = 0, notvacant = 0;
+	unsigned int i, occ = 0, urg = 0, notvacant = 0, tagwidth = 0;
 	Client *c;
 
 	if (!m->showbar)
 		return;
 
 	/* draw status first so it can be overdrawn by tags later */
-	if (m == selmon) { /* status is only drawn on selected monitor */
-		drw_setscheme(drw, scheme[SchemeNorm]);
-		tw = TEXTW(stext) - lrpad + 2; /* 2px right padding */
-		drw_text(drw, m->ww - tw, 0, tw, bh, 0, stext, 0);
-	}
+	//if (m == selmon) { /* status is only drawn on selected monitor */
+	//	drw_setscheme(drw, scheme[SchemeNorm]);
+	//	tw = TEXTW(stext) - lrpad + 2; /* 2px right padding */
+	//	drw_text(drw, m->ww - tw, 0, tw, bh, 0, stext, 0);
+	//}
 
 	for (c = m->clients; c; c = c->next) {
 		occ |= c->tags;
 		if (c->isurgent)
 			urg |= c->tags;
 	}
-
+	/* Lucky line number! */
+	/* Every middle logic ever:
+	 * width/2 is the center
+	 * start at center - whatever_you_are_drawing_width/2 
+	 * Since idk what I have to draw until the for loop (it depends on occ, sel tags, and the tag text)
+	 * I may have to do 2 loops (still O(n) tho)*/
 	/* bullshit variable? maybe remove? */
 	notvacant = occ;
 	notvacant |= m->tagset[m->seltags];
-	x = 0;
+
+	/* Look l8 for some more efficient way? */
+	drw_setscheme(drw, scheme[SchemeNorm]);
+	drw_rect(drw, 0, 0, m->mw, bh, 1, 1);
+
+	for (i = 0, tagwidth = 0; i < LENGTH(tags); i++) {
+	    if (1 << i & notvacant)
+		    tagwidth += TEXTW(tags[i]);
+	}
+
+	x = (m->mw / 2) - (tagwidth / 2);
+
 	logprint("tags:\n");
 	for (i = 0; i < LENGTH(tags); i++) {
 		logprint("\t%s: %s\n",tags[i], (m->tagset[m->seltags] & 1 << i)? "true":"false");
@@ -795,21 +811,21 @@ drawbar(Monitor *m)
 			x += w;
 		}
 	}
-	w = TEXTW(m->ltsymbol);
-	drw_setscheme(drw, scheme[SchemeNorm]);
-	x = drw_text(drw, x, 0, w, bh, lrpad / 2, m->ltsymbol, 0);
+	//w = TEXTW(m->ltsymbol);
+	//drw_setscheme(drw, scheme[SchemeNorm]);
+	//x = drw_text(drw, x, 0, w, bh, lrpad / 2, m->ltsymbol, 0);
 
-	if ((w = m->ww - tw - x) > bh) {
-		if (m->sel) {
-			drw_setscheme(drw, scheme[m == selmon ? SchemeSel : SchemeNorm]);
-			drw_text(drw, x, 0, w, bh, lrpad / 2, m->sel->name, 0);
-			if (m->sel->isfloating)
-				drw_rect(drw, x + boxs, boxs, boxw, boxw, m->sel->isfixed, 0);
-		} else {
-			drw_setscheme(drw, scheme[SchemeNorm]);
-			drw_rect(drw, x, 0, w, bh, 1, 1);
-		}
-	}
+	//if ((w = m->ww - tw - x) > bh) {
+	//	if (m->sel) {
+	//		drw_setscheme(drw, scheme[m == selmon ? SchemeSel : SchemeNorm]);
+	//		drw_text(drw, x, 0, w, bh, lrpad / 2, m->sel->name, 0);
+	//		if (m->sel->isfloating)
+	//			drw_rect(drw, x + boxs, boxs, boxw, boxw, m->sel->isfixed, 0);
+	//	} else {
+	//		drw_setscheme(drw, scheme[SchemeNorm]);
+	//		drw_rect(drw, x, 0, w, bh, 1, 1);
+	//	}
+	//}
 	drw_map(drw, m->barwin, 0, 0, m->ww, bh);
 }
 
