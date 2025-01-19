@@ -803,9 +803,7 @@ drawbar(Monitor *m)
 	drw_setscheme(drw, scheme[SchemeNorm]);
 	drw_rect(drw, x-2, 0, m->mw - x, bh, 1, 1);
 
-	logprint("tags:\n");
 	for (i = 0; i < LENGTH(tags); i++) {
-		logprint("\t%s: %s\n",tags[i], (m->tagset[m->seltags] & 1 << i)? "true":"false");
 		w = TEXTW(tags[i]);
 		drw_setscheme(drw, scheme[m->tagset[m->seltags] & 1 << i ? SchemeSel : SchemeNorm]);
 		/* Gotta hide vacant tags but show the ones I am currently seeing and the occupied 

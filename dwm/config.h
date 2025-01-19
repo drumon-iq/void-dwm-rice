@@ -94,6 +94,15 @@ static const Layout layouts[] = {
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[] = { 
+    "dmenu_launcher",
+    "-m", dmenumon,
+    "-fn", dmenufont,
+    "-nb", "#fdf6e3",
+    "-nf", "#657b83",
+    "-sb", "#eee8d5",
+    "-sf", "#586e75", 
+    NULL };
+static const char *dmenu_run[] = { 
     "dmenu_run",
     "-m", dmenumon,
     "-fn", dmenufont,
@@ -113,6 +122,7 @@ static const Key keys[] = {
 	/* modifier                     key        function        argument */
 	//{ MODKEY,                       XK_o,      myfunk,         {0} },
 	{ MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } },
+	{ MODKEY|ShiftMask,             XK_p,      spawn,          {.v = dmenu_run } },
 	{ MODKEY|ShiftMask,             XK_Return, spawn,          {.v = termcmd } },
 	{ 0,	          XF86XK_AudioLowerVolume, spawn,	   {.v = lowerVolume} },
 	{ 0,		  XF86XK_AudioRaiseVolume, spawn,	   {.v = raiseVolume} },

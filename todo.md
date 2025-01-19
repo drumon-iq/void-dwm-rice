@@ -68,7 +68,7 @@
  - [ ] DMENU
    - [ ] Layouts
    - [ ] Positions
-   - [ ] Scripts
+   - [1/?] Scripts
  - [ ] NEOVIM
    - [ ] Colorscheme
    - [ ] LSP
