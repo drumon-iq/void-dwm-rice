@@ -30,4 +30,13 @@ get_date () {
     echo $icon_clock $time $icon_day $day
 }
 
-xsetroot -name "$(get_date) $(get_battery)"
+get_volume () {
+    icon_def_vol=""
+    raw_volume=$(wpctl get-volume @DEFAULT_SINK@)
+    value_only=$(echo $raw_volume | sed 's/Volume: //')
+    perc=$(echo $value_only | awk '{print $0 * 100}')
+
+    echo $icon_def_vol $perc%
+}
+
+xsetroot -name "$(get_date) $(get_battery) $(get_volume)"
