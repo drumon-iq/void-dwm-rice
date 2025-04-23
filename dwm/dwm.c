@@ -248,7 +248,6 @@ static void zoom(const Arg *arg);
 static void loadthemes();
 static void selectscheme(int seltheme);
 static void toggletheme(const Arg *arg);
-static void myfunk();
 
 /* variables */
 static const char broken[] = "broken";
@@ -2499,21 +2498,6 @@ toggletheme(const Arg *arg)
 		dmenucmd[12] = themes[defaulttheme][1][0];
 	}
 }
-
-//void
-//myfunk()
-//{
-//	screen = DefaultScreen(dpy);
-//	sw = DisplayWidth(dpy, screen);
-//	sh = DisplayHeight(dpy, screen);
-//	root = RootWindow(dpy, screen);
-//
-//	Drw *mydrw = drw_create(dpy, screen, root, sw, sh);
-//
-//	drw_setscheme(mydrw, scheme[SchemeSel]);
-//
-//	drw_rect(mydrw, 100, 100, 1000, 1000, 1, 0);
-//}
 
 int
 main(int argc, char *argv[])
