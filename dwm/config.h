@@ -64,8 +64,8 @@ static const Rule rules[] = {
 	 *	WM_NAME(STRING) = title
 	 */
 	/* class      instance    title       tags mask     isfloating   monitor */
-	{ "Gimp",     NULL,       NULL,       0,            1,           -1 },
-	{ "Firefox",  NULL,       NULL,       1 << 8,       0,           -1 },
+	{ "Gimp",     NULL,       NULL,       0,            0,           -1 },
+	{ "Firefox",  NULL,       NULL,       0,            0,           -1 },
 };
 
 /* layout(s) */
@@ -103,7 +103,21 @@ static const char *dmenucmd[] = {
     "-sb", col_cyan, 
     "-sf", col_gray4, 
     NULL };
+<<<<<<< HEAD
 static const char *termcmd[]  = { "st", NULL };
+=======
+static const char *dmenu_run[] = { 
+    "dmenu_run",
+    "-m", dmenumon,
+    "-fn", dmenufont,
+    "-nb", "#fdf6e3",
+    "-nf", "#657b83",
+    "-sb", "#eee8d5",
+    "-sf", "#586e75", 
+    NULL };
+static const char *termcmd[]  = { "st", NULL, NULL };
+static const char *ranger[]  = { "st", "-e", "ranger", NULL };
+>>>>>>> recover_ConfigH
 /* Scripts for shortcuts */
 static const char *raiseVolume[]  = { "amixer", "set", "Master", "5%+", NULL };
 static const char *lowerVolume[]  = { "amixer", "set", "Master", "5%-", NULL };
@@ -114,6 +128,11 @@ static const char *menupower[]  = { "menu-power.sh", NULL };
 static const Key keys[] = {
 	/* modifier                     key        function        argument */
 	{ MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } },
+<<<<<<< HEAD
+=======
+	{ MODKEY,                       XK_o,      spawn,          {.v = ranger } },
+	{ MODKEY|ShiftMask,             XK_p,      spawn,          {.v = dmenu_run } },
+>>>>>>> recover_ConfigH
 	{ MODKEY|ShiftMask,             XK_Return, spawn,          {.v = termcmd } },
 	{ 0,	          XF86XK_AudioLowerVolume, spawn,	   {.v = lowerVolume} },
 	{ 0,		  XF86XK_AudioRaiseVolume, spawn,	   {.v = raiseVolume} },
