@@ -113,6 +113,7 @@ static const char *dmenu_run[] = {
     NULL };
 static const char *termcmd[]  = { "st", NULL, NULL };
 /* Scripts for shortcuts */
+static const char *ranger[]  = { "st", "-e", "ranger", NULL };
 static const char *raiseVolume[]  = { "amixer", "set", "Master", "5%+", NULL };
 static const char *lowerVolume[]  = { "amixer", "set", "Master", "5%-", NULL };
 static const char *raiseBrightness[] = { "xbacklight", "-inc", "5", NULL };
@@ -120,7 +121,7 @@ static const char *lowerBrightness[] = { "xbacklight", "-dec", "5", NULL };
 
 static const Key keys[] = {
 	/* modifier                     key        function        argument */
-	//{ MODKEY,                       XK_o,      myfunk,         {0} },
+	{ MODKEY,                       XK_o,      spawn,          {.v = ranger} },
 	{ MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } },
 	{ MODKEY|ShiftMask,             XK_p,      spawn,          {.v = dmenu_run } },
 	{ MODKEY|ShiftMask,             XK_Return, spawn,          {.v = termcmd } },
