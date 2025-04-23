@@ -44,7 +44,6 @@
 
 #include "drw.h"
 #include "util.h"
-#include "logger.h"
 
 /* macros */
 #define BUTTONMASK              (ButtonPressMask|ButtonReleaseMask)
@@ -248,7 +247,6 @@ static void zoom(const Arg *arg);
 static void loadthemes();
 static void selectscheme(int seltheme);
 static void toggletheme(const Arg *arg);
-static void myfunk();
 
 /* variables */
 static const char broken[] = "broken";
@@ -1221,7 +1219,7 @@ monocle(Monitor *m)
 		if (ISVISIBLE(c))
 			n++;
 	if (n > 0) /* override layout symbol */
-		snprintf(m->ltsymbol, sizeof m->ltsymbol, "[%d]", n);
+		snprintf(m->ltsymbol, sizeof m->ltsymbol, "󰊓 %d", n);
 	for (c = nexttiled(m->clients); c; c = nexttiled(c->next))
 		if (selmon->pertag->drawwithgaps[selmon->pertag->curtag])
 			resize(c, m->wx, m->wy, m->ww - 2 * c->bw, m->wh - 2 * c->bw, 0);
@@ -2480,7 +2478,7 @@ toggletheme(const Arg *arg)
 	int nt = arg->i;
 
 	if (scheme == list_schemes[defaulttheme]) {
-		system("$HOME/.fehbg-dark");
+		system("$HOME/.local/scripts/.dwmbg-dark");
 		termcmd[1] = "-r";
 		selectscheme(nt);
 
@@ -2489,7 +2487,7 @@ toggletheme(const Arg *arg)
 		dmenucmd[10] = themes[nt][1][1];
 		dmenucmd[12] = themes[nt][1][0];
 	} else {
-		system("$HOME/.fehbg-light");
+		system("$HOME/.local/scripts/.dwmbg-light");
 		termcmd[1] = NULL;
 		selectscheme(defaulttheme);
 
@@ -2499,21 +2497,6 @@ toggletheme(const Arg *arg)
 		dmenucmd[12] = themes[defaulttheme][1][0];
 	}
 }
-
-//void
-//myfunk()
-//{
-//	screen = DefaultScreen(dpy);
-//	sw = DisplayWidth(dpy, screen);
-//	sh = DisplayHeight(dpy, screen);
-//	root = RootWindow(dpy, screen);
-//
-//	Drw *mydrw = drw_create(dpy, screen, root, sw, sh);
-//
-//	drw_setscheme(mydrw, scheme[SchemeSel]);
-//
-//	drw_rect(mydrw, 100, 100, 1000, 1000, 1, 0);
-//}
 
 int
 main(int argc, char *argv[])
@@ -2526,9 +2509,6 @@ main(int argc, char *argv[])
 		fputs("warning: no locale support\n", stderr);
 	if (!(dpy = XOpenDisplay(NULL)))
 		die("dwm: cannot open display");
-
-	setlog("/home/qfira/dwm.log");
-	clearlog();
 
 	checkotherwm();
 	setup();
