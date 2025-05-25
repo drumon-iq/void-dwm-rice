@@ -44,7 +44,6 @@
 
 #include "drw.h"
 #include "util.h"
-#include "logger.h"
 
 /* macros */
 #define BUTTONMASK              (ButtonPressMask|ButtonReleaseMask)
